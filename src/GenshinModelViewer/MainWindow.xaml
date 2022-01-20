@@ -1,0 +1,34 @@
+﻿<Window x:Class="Genshin.ModelViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helix="clr-namespace:QuickLook.Plugin.HelixViewer;assembly=QuickLook.Plugin.HelixViewer"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:local="clr-namespace:Genshin.ModelViewer"
+        mc:Ignorable="d"
+        Title="Genshin Model Viewer" Height="900" Width="1440" WindowStartupLocation="CenterScreen"
+        FontSize="22"
+        x:Name="self" DataContext="{Binding ElementName=self}">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid x:Name="gridRoot" AllowDrop="True" >
+        <!--<helix:HelixViewerPanel x:Name="render"/>-->
+        <Grid x:Name="gridOpen">
+            <Border x:Name="borderOpen" Width="600" Height="300" BorderThickness="1.5" CornerRadius="20" BorderBrush="#AAA" Background="#FAFAFA">
+                <StackPanel x:Name="stackPanelOpen" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <svgc:SvgViewbox x:Name="svgc1" HorizontalAlignment="Center" Height="30" Width="30" Margin="0,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/pyro.svg"/>
+                        <svgc:SvgViewbox x:Name="svgc2" HorizontalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/hydro.svg"/>
+                        <svgc:SvgViewbox x:Name="svgc3" HorizontalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/anemo.svg"/>
+                        <svgc:SvgViewbox x:Name="svgc4" HorizontalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/electro.svg"/>
+                        <svgc:SvgViewbox x:Name="svgc5" HorizontalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/dendro.svg"/>
+                        <svgc:SvgViewbox x:Name="svgc6" HorizontalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/cryo.svg"/>
+                        <svgc:SvgViewbox x:Name="svgc7" HorizontalAlignment="Center" Height="30" Width="30" Margin="5,0,0,0" IsHitTestVisible="False" Source="pack://application:,,,/Resources/geo.svg"/>
+                    </StackPanel>
+                    <TextBlock x:Name="textBlockOpen" Text="点击选择模型文件或将文件拖拽到此窗口" Foreground="#AAA" Margin="0,10,0,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

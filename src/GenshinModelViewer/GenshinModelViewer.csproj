@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+	<LangVersion>10.0</LangVersion>
+	<ApplicationIcon>Resources\YunjinSideFace.ico</ApplicationIcon>
+	<AssemblyName>genshin-model-viewer</AssemblyName>
+	<Platforms>x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Genshin.ModelViewer\**" />
+    <Compile Remove="ViewModels\**" />
+    <EmbeddedResource Remove="Genshin.ModelViewer\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="Genshin.ModelViewer\**" />
+    <None Remove="ViewModels\**" />
+    <Page Remove="Genshin.ModelViewer\**" />
+    <Page Remove="ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="7z.dll" />
+    <None Remove="Resources\anemo.svg" />
+    <None Remove="Resources\cryo.svg" />
+    <None Remove="Resources\dendro.svg" />
+    <None Remove="Resources\electro.svg" />
+    <None Remove="Resources\geo.svg" />
+    <None Remove="Resources\hydro.svg" />
+    <None Remove="Resources\open.png" />
+    <None Remove="Resources\pyro.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HelixToolkit" Version="2.20.0" />
+    <PackageReference Include="HelixToolkit.Wpf" Version="2.20.0" />
+    <PackageReference Include="SharpVectors" Version="1.7.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuickLook.Plugin.HelixViewer\QuickLook.Plugin.HelixViewer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\anemo.svg" />
+    <Resource Include="Resources\cryo.svg" />
+    <Resource Include="Resources\dendro.svg" />
+    <Resource Include="Resources\electro.svg" />
+    <Resource Include="Resources\geo.svg" />
+    <Resource Include="Resources\hydro.svg" />
+    <Resource Include="Resources\pyro.svg" />
+  </ItemGroup>
+
+</Project>
