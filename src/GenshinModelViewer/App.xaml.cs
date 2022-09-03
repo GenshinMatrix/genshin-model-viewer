@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Genshin.ModelViewer
+namespace GenshinModelViewer
 {
     public partial class App : Application
     {

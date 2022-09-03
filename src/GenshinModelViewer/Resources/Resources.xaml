@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="GenshinIcons">/GenshinModelViewer;component/Resources/fonts/GenshinIcons/fonts/GenshinIcons.ttf#GenshinIcons</FontFamily>
+    <FontFamily x:Key="KhaenriahNeueChasm">/GenshinModelViewer;component/Resources/fonts/KhaenriahNeue-Chasm-2.000.otf#Khaenriah Neue Chasm</FontFamily>
+    <FontFamily x:Key="SegoeMDL2Assets">/GenshinModelViewer;component/Resources/fonts/Segoe MDL2 Assets.ttf#Segoe MDL2 Assets</FontFamily>
+    <FontFamily x:Key="SegoeFluentIcons">/GenshinModelViewer;component/Resources/fonts/Segoe Fluent Icons.ttf#Segoe Fluent Icons</FontFamily>
+</ResourceDictionary>

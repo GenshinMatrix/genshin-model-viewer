@@ -2,55 +2,38 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
 	<LangVersion>10.0</LangVersion>
-	<ApplicationIcon>Resources\YunjinSideFace.ico</ApplicationIcon>
-	<AssemblyName>genshin-model-viewer</AssemblyName>
+	<ApplicationIcon>Resources\UI_AvatarIcon_Side_Yunjin.ico</ApplicationIcon>
+	<AssemblyName>GenshinModelViewer</AssemblyName>
 	<Platforms>x64</Platforms>
+	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	<SupportedOSPlatformVersion>7</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Genshin.ModelViewer\**" />
-    <Compile Remove="ViewModels\**" />
-    <EmbeddedResource Remove="Genshin.ModelViewer\**" />
-    <EmbeddedResource Remove="ViewModels\**" />
-    <None Remove="Genshin.ModelViewer\**" />
-    <None Remove="ViewModels\**" />
-    <Page Remove="Genshin.ModelViewer\**" />
-    <Page Remove="ViewModels\**" />
+    <None Remove="Resources\7z.dll" />
+    <None Remove="Resources\fonts\GenshinIcons\fonts\GenshinIcons.ttf" />
+    <None Remove="Resources\fonts\KhaenriahNeue-Chasm-2.000.otf" />
+    <None Remove="Resources\fonts\Segoe Fluent Icons.ttf" />
+    <None Remove="Resources\fonts\Segoe MDL2 Assets.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="7z.dll" />
-    <None Remove="Resources\anemo.svg" />
-    <None Remove="Resources\cryo.svg" />
-    <None Remove="Resources\dendro.svg" />
-    <None Remove="Resources\electro.svg" />
-    <None Remove="Resources\geo.svg" />
-    <None Remove="Resources\hydro.svg" />
-    <None Remove="Resources\open.png" />
-    <None Remove="Resources\pyro.svg" />
+    <PackageReference Include="HelixToolkit" Version="2.22.0" />
+    <PackageReference Include="HelixToolkit.Core.Wpf" Version="2.22.0" />
+    <PackageReference Include="Pfim" Version="0.11.1" />
+    <PackageReference Include="Squid-Box.SevenZipSharp" Version="1.5.0.366" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HelixToolkit" Version="2.20.0" />
-    <PackageReference Include="HelixToolkit.Wpf" Version="2.20.0" />
-    <PackageReference Include="SharpVectors" Version="1.7.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\QuickLook.Plugin.HelixViewer\QuickLook.Plugin.HelixViewer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\anemo.svg" />
-    <Resource Include="Resources\cryo.svg" />
-    <Resource Include="Resources\dendro.svg" />
-    <Resource Include="Resources\electro.svg" />
-    <Resource Include="Resources\geo.svg" />
-    <Resource Include="Resources\hydro.svg" />
-    <Resource Include="Resources\pyro.svg" />
+    <Resource Include="Resources\7z.dll" />
+    <Resource Include="Resources\fonts\GenshinIcons\fonts\GenshinIcons.ttf" />
+    <Resource Include="Resources\fonts\KhaenriahNeue-Chasm-2.000.otf" />
+    <Resource Include="Resources\fonts\Segoe Fluent Icons.ttf" />
+    <Resource Include="Resources\fonts\Segoe MDL2 Assets.ttf" />
   </ItemGroup>
 
 </Project>

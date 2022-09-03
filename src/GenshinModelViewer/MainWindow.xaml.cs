@@ -1,11 +1,11 @@
 ﻿using Microsoft.Win32;
-using QuickLook.Plugin.HelixViewer;
-using SharpVectors.Converters;
 using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Genshin.ModelViewer
+namespace GenshinModelViewer
 {
     public partial class MainWindow : Window
     {
@@ -20,7 +20,6 @@ namespace Genshin.ModelViewer
         public MainWindow()
         {
             InitializeComponent();
-            AllowDrop = true;
 
             Drop += (s, e) =>
             {
@@ -37,48 +36,41 @@ namespace Genshin.ModelViewer
 
             gridOpen.MouseEnter += (s, e) =>
             {
-                Brush brush = new SolidColorBrush(Color.FromRgb(107, 107, 107));
-                borderOpen.BorderBrush = brush;
-
-                textBlockOpen.Foreground = brush;
-                for (int i = 1; i <= 7; i++)
+                Brush brush = new SolidColorBrush(Color.FromArgb(255, 107, 107, 107));
+                Dictionary<DependencyProperty, Brush> dic = new()
                 {
-                    var svg = FindName($"svgc{i}") as SvgViewbox;
-
-                    foreach (DrawingGroup d in svg.Drawings.Children)
-                    {
-                        foreach (GeometryDrawing dd in d.Children)
-                        {
-                            dd.Brush = brush;
-                        }
-                    }
-                }
+                    [TextBlock.ForegroundProperty] = brush,
+                    [Border.BorderBrushProperty] = brush,
+                };
+                gridOpen.Children.ForEachDeep<TextBlock>(textBlock =>
+                {
+                    StoryboardUtils.BeginBrushStoryboard(textBlock, dic);
+                });
+                StoryboardUtils.BeginBrushStoryboard(borderOpen, dic);
             };
             gridOpen.MouseLeave += (s, e) =>
             {
-                Brush brush = new SolidColorBrush(Color.FromRgb(170, 170, 170));
+                Brush brush = new SolidColorBrush(Color.FromArgb(170, 170, 170, 170));
+                Dictionary<DependencyProperty, Brush> dic = new()
+                {
+                    [TextBlock.ForegroundProperty] = brush,
+                    [Border.BorderBrushProperty] = brush,
+                };
                 borderOpen.BorderBrush = brush;
 
-                textBlockOpen.Foreground = brush;
-                for (int i = 1; i <= 7; i++)
+                gridOpen.Children.ForEachDeep<TextBlock>(textBlock =>
                 {
-                    var svg = FindName($"svgc{i}") as SvgViewbox;
-
-                    foreach (DrawingGroup d in svg.Drawings.Children)
-                    {
-                        foreach (GeometryDrawing dd in d.Children)
-                        {
-                            dd.Brush = brush;
-                        }
-                    }
-                }
+                    StoryboardUtils.BeginBrushStoryboard(textBlock, dic);
+                });
+                StoryboardUtils.BeginBrushStoryboard(borderOpen, dic);
             };
+
             gridOpen.MouseLeftButtonUp += (s, e) =>
             {
                 var dialog = new OpenFileDialog()
                 {
-                    Title = "选择模型文件",
-                    Filter = "模型(*.pmx,*.zip,*.7z)|*.pmx;*.zip;*.7z",
+                    Title = "Select DMM Model",
+                    Filter = "DMM Model(*.pmx,*.zip,*.7z)|*.pmx;*.zip;*.7z",
                     RestoreDirectory = true,
                     DefaultExt = "pmx",
                 };
@@ -101,10 +93,9 @@ namespace Genshin.ModelViewer
         {
             if (!string.IsNullOrEmpty(path))
             {
-                HelixViewerPanel render = new(path);
-
-                gridRoot.Children.Clear();
-                gridRoot.Children.Add(render);
+                render.ModelPath = path;
+                render.Visibility = Visibility.Visible;
+                gridOpen.Visibility = Visibility.Collapsed;
             }
         }
     }

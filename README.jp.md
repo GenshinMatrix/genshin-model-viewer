@@ -1,6 +1,6 @@
 ・[English](README.en.md) ・[中文](README.md) ・[日本語](README.jp.md)
 
-  # <img src="src/GenshinModelViewer/Resources/YunjinSideFace.png" width = "56" height = "56" alt="" align="left" /> 原神モデルビューア
+  # <img src="src/GenshinModelViewer/Resources/UI_AvatarIcon_Side_Yunjin.png" width = "56" height = "56" alt="" align="left" /> 原神モデルビューア
 
 他のPMX形式DMMモデルのプレビューもサポートされています。
 
@@ -14,21 +14,25 @@
 
   > サポートされているテクスチャのフォーマット：`*.png` `*.bmp` `*.dds` `*.tga` など。
 
-原神公式モデルアドレス：https://www.aplaybox.com/u/680828836
+[モデルのダウンロード](https://www.aplaybox.com/u/680828836)
 
-  ## スクリーンショット
+  ## 使い方
 
 ![demo2](screen-shot/demo-01.png)
 
 ![demo1](screen-shot/demo-02.png)
 
+> モデルファイルを選択する、又はウィンドウにドラッグ&ドロップして始まる。
+
+| ソースインプット       | 效果                        |
+| ---------------------- | --------------------------- |
+| マウスの左ボタン       | トランスレーション          |
+| マウスの真ん中のボタン | トランスレーション & ズーム |
+| マウスの右ボタン       | 回転                        |
+
   ## 実行環境
 
-> Windows7 (又はそれ以上) `.NET Framework 4.8`
-
-  ## 使い方
-
-モデルファイルを選択する、又はウィンドウにドラッグ&ドロップして始まる。
+`Win10 x64` `.NET 6`
 
   ## ダウンロード
   [![GitHub downloads](https://img.shields.io/github/downloads/emako/genshin-model-viewer/total)](https://github.com/emako/genshin-model-viewer/releases)
@@ -36,39 +40,6 @@
 
   > ダウンロードページ：https://github.com/emako/genshin-model-viewer/releases
   >
-  > Baiduクラウドディスク：https://pan.baidu.com/s/1zyV4h6zHmqeWdlbeYyY0-A `7234`
-
-  ## 依存とサポート
-
-  - QuickLook.Plugin.HelixViewer & HelixToolkit
-
-  > https://github.com/ShiinaManatsu/QuickLook.Plugin.HelixViewer
-  >
-  > https://github.com/helix-toolkit/helix-toolkit
-
-  - Pfim
-
-  > https://github.com/nickbabcock/Pfim
-
-  - SevenZipSharp & 7-Zip
-
-  >https://github.com/tomap/SevenZipSharp
-  >
-  >https://www.7-zip.org/
-
-  - SharpVectors
-
-  > https://github.com/ElinamLLC/SharpVectors
-
-  ## ビルド
-
-WPFに基づいた開発。
-
-必要なツール：`VS2022` `7z` `dotNET_Reactor`
-
-そのうち`dotNET_Reactor`は、単一exeに合成するために使用されます。
-
-  > 参照：[app_build.bat](app_build.bat)
 
   ## タスク
 
@@ -79,14 +50,31 @@ WPFに基づいた開発。
 - [ ] フルスクリーンモードとWindowのタイトルバーのリペイントをサポート。
 - [ ] 更なるUIボタンの追加。
 
-## 既知の問題
+## よくある質問
 
-1. アーカイブ形式で`*.dss`をインポートするのDirectX形式の読み込みに失敗する場合があります。
+> モデルのとある部分のテクスチャのレンダリング異常？
 
-> [Issues](https://github.com/emako/genshin-model-viewer/issues) へようこそ。
+- Sphereアルゴリズムが組み込まれたモデルはサポートされていません。この場合はモデルのテクスチャ異常として表現されますが、現在原神公式リリースされているDMMモデルではこのような方法は使用されていないので、原神のモデルにはこのような問題はないはずです。
+
+---
+
+[Issues](https://github.com/emako/genshin-model-viewer/issues) へようこそ。
 
 ## 変更履歴
 
-**v1.0 **@2022-01-20
+[CHANGELOG.md](CHANGELOG.md)
 
-> 1. 初版
+## 依存ライブラリ
+
+- [HelixToolkit](https://github.com/helix-toolkit/helix-toolkit)
+- [QuickLook.Plugin.HelixViewer](https://github.com/ShiinaManatsu/QuickLook.Plugin.HelixViewer)
+
+- [Pfim](https://github.com/nickbabcock/Pfim)
+
+- [SevenZipSharp](https://github.com/squid-box/SevenZipSharp)
+- [7-Zip](https://www.7-zip.org/)
+
+## ライセンス
+
+[LICENSE](LICENSE)
+
