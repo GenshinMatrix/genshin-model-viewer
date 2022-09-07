@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 using PfimImageFormat = Pfim.ImageFormat;
 using PixelFormat = System.Windows.Media.PixelFormat;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Core
 {
     internal static class PfimxUtils
     {

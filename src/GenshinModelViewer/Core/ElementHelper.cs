@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Core
 {
     public static class ElementHelper
     {

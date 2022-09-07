@@ -6,7 +6,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Resources;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Core
 {
     public class SevenZipHelper
     {

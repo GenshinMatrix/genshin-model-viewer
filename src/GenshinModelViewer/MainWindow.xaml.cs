@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
+using Screen = System.Windows.Forms.Screen;
 
 namespace GenshinModelViewer
 {
@@ -77,6 +80,19 @@ namespace GenshinModelViewer
                 if (dialog.ShowDialog() ?? false)
                 {
                     LoadModel(dialog.FileName);
+                }
+            };
+
+            KeyDown += (s, e) =>
+            {
+                switch (e.Key)
+                {
+                    case Key.F11:
+                        this.SetFullScreen();
+                        break;
+                    case Key.Escape:
+                        this.SetFullScreen(true);
+                        break;
                 }
             };
         }

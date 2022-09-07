@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Core
 {
     public partial class PMXLoaderScript
     {

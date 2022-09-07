@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 using Bitmap = System.Drawing.Bitmap;
 using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Core
 {
     internal static class BitmapUtils
     {

@@ -11,6 +11,7 @@
 	<Platforms>x64</Platforms>
 	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	<SupportedOSPlatformVersion>7</SupportedOSPlatformVersion>
+	<ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +35,10 @@
     <Resource Include="Resources\fonts\KhaenriahNeue-Chasm-2.000.otf" />
     <Resource Include="Resources\fonts\Segoe Fluent Icons.ttf" />
     <Resource Include="Resources\fonts\Segoe MDL2 Assets.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

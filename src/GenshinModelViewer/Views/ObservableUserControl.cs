@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Views
 {
     public class ObservableUserControl : UserControl, INotifyPropertyChanged
     {

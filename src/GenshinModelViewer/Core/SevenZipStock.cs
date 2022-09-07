@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
-namespace GenshinModelViewer
+namespace GenshinModelViewer.Core
 {
     public class SevenZipStock : IDisposable
     {
