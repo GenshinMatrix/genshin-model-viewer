@@ -109,14 +109,14 @@ namespace GenshinModelViewer.Views
                     }
                     catch (Exception e)
                     {
-                        Debug.WriteLine(e.ToString());
+                        Logger.Warn(e.ToString());
                     }
                 }
                 Models = models;
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.ToString());
+                Logger.Error(e.ToString());
             }
         }
 
@@ -154,6 +154,16 @@ namespace GenshinModelViewer.Views
                 plane_start += plane_count;
                 return pack;
             }).ToArray();
+        }
+
+        public void ResetCamera()
+        {
+            camera.FieldOfView = 45;
+            camera.FarPlaneDistance = 30000;
+            camera.LookDirection = new(0, 0, 49.867532564294045);
+            camera.NearPlaneDistance = 0.1;
+            camera.Position = new(-2.384185791015625E-07, 9.745553016662598, -49.222887469422524);
+            camera.UpDirection = new(0, 1, 0);
         }
     }
 

@@ -8,7 +8,7 @@
         Title="Genshin Model Viewer" AllowDrop="True"
         Height="900" Width="1440" WindowStartupLocation="CenterScreen">
     <Grid x:Name="gridRoot">
-        <local:HelixViewer x:Name="render" Visibility="Collapsed"/>
+        <local:HelixViewer x:Name="viewer" Visibility="Collapsed"/>
         <Grid x:Name="gridOpen">
             <Border x:Name="borderOpen" Width="600" Height="300" BorderThickness="1.5" CornerRadius="20" BorderBrush="#AbAA" Background="#FAFAFA">
                 <StackPanel x:Name="stackPanelOpen" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -21,7 +21,7 @@
                         <TextBlock Text="&#xe901;" Foreground="#AAA" FontSize="40" FontFamily="{StaticResource GenshinIcons}"/>
                         <TextBlock Text="&#xe904;" Foreground="#AAA" FontSize="40" FontFamily="{StaticResource GenshinIcons}"/>
                     </StackPanel>
-                    <TextBlock x:Name="textBlockOpen" Text="Select a DMM model file or drop down here ..." Foreground="#AAA" Margin="0,10,0,0" />
+                    <TextBlock x:Name="textBlockOpen" Text="Press F1 to select a DMM file or drop down it here ..." Foreground="#AAA" Margin="0,10,0,0" />
                 </StackPanel>
             </Border>
         </Grid>

@@ -26,7 +26,7 @@ namespace GenshinModelViewer.Core
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.ToString());
+                    Logger.Warn(e.ToString());
                 }
             }
             SetLibraryPath(lib7zPath);

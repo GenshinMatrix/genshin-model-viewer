@@ -1,2 +1,2 @@
-﻿global using GenshinModelViewer;
-global using GenshinModelViewer.Core;
+﻿global using GenshinModelViewer.Core;
+global using GenshinModelViewer.Logging;

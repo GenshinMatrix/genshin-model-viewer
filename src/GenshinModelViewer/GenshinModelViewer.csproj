@@ -10,7 +10,6 @@
 	<AssemblyName>GenshinModelViewer</AssemblyName>
 	<Platforms>x64</Platforms>
 	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	<SupportedOSPlatformVersion>7</SupportedOSPlatformVersion>
 	<ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
@@ -39,6 +38,10 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GenshinModelViewer.Logging\GenshinModelViewer.Logging.csproj" />
   </ItemGroup>
 
 </Project>

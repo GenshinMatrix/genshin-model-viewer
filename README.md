@@ -40,7 +40,6 @@
 
 > 下载页：https://github.com/emako/genshin-model-viewer/releases
 >
-> 度盘：https://pan.baidu.com/s/1zyV4h6zHmqeWdlbeYyY0-A `7234`
 
 ## 开发任务
 

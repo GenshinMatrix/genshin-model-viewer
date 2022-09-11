@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
-using Screen = System.Windows.Forms.Screen;
 
 namespace GenshinModelViewer
 {
@@ -14,11 +12,14 @@ namespace GenshinModelViewer
     {
         public string ModelPath
         {
-            get { return (string)GetValue(ModelPathProperty); }
-            set { SetValue(ModelPathProperty, value); }
+            get => (string)GetValue(ModelPathProperty);
+            set => SetValue(ModelPathProperty, value);
         }
-
-        public static readonly DependencyProperty ModelPathProperty = DependencyProperty.Register("ModelPath", typeof(string), typeof(MainWindow), new PropertyMetadata("", OnModelPathChanged));
+        public static readonly DependencyProperty ModelPathProperty = DependencyProperty.Register("ModelPath", typeof(string), typeof(MainWindow), new PropertyMetadata(null, (d, e) =>
+        {
+            if (d is MainWindow self)
+                self.LoadModel(e.NewValue as string);
+        }));
 
         public MainWindow()
         {
@@ -51,6 +52,7 @@ namespace GenshinModelViewer
                 });
                 StoryboardUtils.BeginBrushStoryboard(borderOpen, dic);
             };
+
             gridOpen.MouseLeave += (s, e) =>
             {
                 Brush brush = new SolidColorBrush(Color.FromArgb(170, 170, 170, 170));
@@ -70,49 +72,57 @@ namespace GenshinModelViewer
 
             gridOpen.MouseLeftButtonUp += (s, e) =>
             {
-                var dialog = new OpenFileDialog()
-                {
-                    Title = "Select DMM Model",
-                    Filter = "DMM Model(*.pmx,*.zip,*.7z)|*.pmx;*.zip;*.7z",
-                    RestoreDirectory = true,
-                    DefaultExt = "pmx",
-                };
-                if (dialog.ShowDialog() ?? false)
-                {
-                    LoadModel(dialog.FileName);
-                }
+                OpenFromDialog();
             };
 
             KeyDown += (s, e) =>
             {
                 switch (e.Key)
                 {
+                    case Key.F1:
+                        OpenFromDialog();
+                        break;
                     case Key.F11:
                         this.SetFullScreen();
                         break;
                     case Key.Escape:
                         this.SetFullScreen(true);
                         break;
+                    case Key.R:
+                        ResetCamera();
+                        break;
                 }
             };
-        }
-
-        private static void OnModelPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is MainWindow self)
-            {
-                self.LoadModel(e.NewValue as string);
-            }
         }
 
         public void LoadModel(string path)
         {
             if (!string.IsNullOrEmpty(path))
             {
-                render.ModelPath = path;
-                render.Visibility = Visibility.Visible;
+                viewer.ModelPath = path;
+                viewer.Visibility = Visibility.Visible;
                 gridOpen.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void OpenFromDialog()
+        {
+            OpenFileDialog dialog = new()
+            {
+                Title = "Select Model",
+                Filter = "DMM(*.pmx,*.zip,*.7z,*.rar)|*.pmx;*.zip;*.7z;*.rar",
+                RestoreDirectory = true,
+                DefaultExt = "pmx",
+            };
+            if (dialog.ShowDialog() ?? false)
+            {
+                LoadModel(dialog.FileName);
+            }
+        }
+
+        private void ResetCamera()
+        {
+            viewer.ResetCamera();
         }
     }
 }

@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
-        <helix:HelixViewport3D x:Name="view1"
+        <helix:HelixViewport3D x:Name="viewport"
                                ZoomExtentsWhenLoaded="true" 
                                ZoomAroundMouseDownPoint="True" 
                                CameraRotationMode="Turnball"
@@ -30,7 +30,8 @@
                             Azimuth="5"/>
             
             <helix:HelixViewport3D.Camera>
-                <PerspectiveCamera FieldOfView="45"
+                <PerspectiveCamera x:Name="camera"
+                                   FieldOfView="45"
                                    FarPlaneDistance="30000"
                                    LookDirection="0,0,414.388"
                                    NearPlaneDistance="0.1"

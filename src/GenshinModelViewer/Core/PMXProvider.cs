@@ -9,10 +9,10 @@ namespace GenshinModelViewer.Core
 {
     public class PMXProvider
     {
-        private SevenZipStock? stock;
+        private SevenZipStock stock;
         private string path = null;
 
-        private bool IsArchive(string path)
+        private static bool IsArchive(string path)
         {
             FileInfo fi = new(path);
 
@@ -75,7 +75,7 @@ namespace GenshinModelViewer.Core
             }
             else
             {
-                string GetRelativePath(string relativeFrom, string path)
+                static string GetRelativePath(string relativeFrom, string path)
                 {
                     string[] pathSplitted = path.Replace('/', '\\').ToLower().Split('\\');
 
