@@ -1,0 +1,7 @@
+*.html linguist-language=JavaScript
+*.css linguist-language=JavaScript
+*.js linguist-detectable=true
+demo-files/*.js linguist-vendored
+demo-files/*.css linguist-vendored
+demo.html linguist-vendored
+style.css linguist-vendored
