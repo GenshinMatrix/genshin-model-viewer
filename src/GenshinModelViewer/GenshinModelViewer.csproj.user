@@ -7,5 +7,11 @@
     <Page Update="Resources\Resources.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\MessageBox\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ModelSelectionDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

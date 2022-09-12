@@ -1,6 +1,9 @@
-﻿using Microsoft.Win32;
+﻿using GenshinModelViewer.Models;
+using Microsoft.Win32;
+using Model.Viewer.Plugin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -93,6 +96,18 @@ namespace GenshinModelViewer
                         break;
                 }
             };
+
+            viewer.Selector = async ss =>
+            {
+                string selected = await new ModelSelectionDialog(ss).GetSelectedAsync();
+
+                if (string.IsNullOrEmpty(selected))
+                {
+                    CancelModel();
+                    return null;
+                }
+                return selected;
+            };
         }
 
         public void LoadModel(string path)
@@ -105,6 +120,13 @@ namespace GenshinModelViewer
             }
         }
 
+        public void CancelModel()
+        {
+            viewer.CancelLoadModel();
+            viewer.Visibility = Visibility.Collapsed;
+            gridOpen.Visibility = Visibility.Visible;
+        }
+
         private void OpenFromDialog()
         {
             OpenFileDialog dialog = new()
@@ -113,6 +135,7 @@ namespace GenshinModelViewer
                 Filter = "DMM(*.pmx,*.zip,*.7z,*.rar)|*.pmx;*.zip;*.7z;*.rar",
                 RestoreDirectory = true,
                 DefaultExt = "pmx",
+                InitialDirectory = Directory.Exists(ForDispatcher.ApplicationModelPath) ? ForDispatcher.ApplicationModelPath : null,
             };
             if (dialog.ShowDialog() ?? false)
             {

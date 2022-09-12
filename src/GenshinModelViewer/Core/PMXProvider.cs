@@ -2,15 +2,23 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace GenshinModelViewer.Core
 {
-    public class PMXProvider
+    public class PMXProvider : IDisposable
     {
         private SevenZipStock stock;
         private string path = null;
+
+        public void Dispose()
+        {
+            path = null;
+            stock?.Dispose();
+            stock = null;
+        }
 
         private static bool IsArchive(string path)
         {
@@ -25,13 +33,15 @@ namespace GenshinModelViewer.Core
 
         public void Load(string path)
         {
+            Dispose();
+
             if (IsArchive(path))
             {
                 stock = new(path);
             }
         }
 
-        public Stream GetPMX(Func<string[], string> selector)
+        public async Task<Stream> GetPMX(Func<string[], Task<string>> selector)
         {
             string[] pmxs = stock.ContentDict?.Keys.Where(k => k.ToLower().EndsWith(".pmx")).ToArray();
 
@@ -40,15 +50,26 @@ namespace GenshinModelViewer.Core
                 return null;
             }
 
-            path = selector.Invoke(pmxs);
+            if (pmxs.Length == 1 || selector == null)
+            {
+                path = pmxs.First();
+            }
+            else
+            {
+                path = await selector.Invoke(pmxs);
+            }
+            if (path == null)
+            {
+                return null;
+            }
             return stock.ContentDict[path];
         }
 
-        public PMXFormat GetPMXFormat(string path, Func<string[], string> selector = null)
+        public async Task<PMXFormat> GetPMXFormat(string path, Func<string[], Task<string>> selector = null)
         {
             if (IsArchive(path))
             {
-                Stream pmxStream = GetPMX(selector ?? (ss => ss.First()));
+                Stream pmxStream = await GetPMX(selector);
 
                 if (pmxStream == null)
                 {

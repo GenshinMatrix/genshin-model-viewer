@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
 	<LangVersion>10.0</LangVersion>
@@ -26,6 +26,7 @@
     <PackageReference Include="HelixToolkit.Core.Wpf" Version="2.22.0" />
     <PackageReference Include="Pfim" Version="0.11.1" />
     <PackageReference Include="Squid-Box.SevenZipSharp" Version="1.5.0.366" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,11 +38,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\GenshinModelViewer.Logging\GenshinModelViewer.Logging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GenshinModelViewer.Logging\GenshinModelViewer.Logging.csproj" />
+    <Page Update="Views\MessageBox\MessageDialog.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

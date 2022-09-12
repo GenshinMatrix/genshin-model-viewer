@@ -1,9 +1,11 @@
 ﻿using HelixToolkit.Wpf;
+using Model.Viewer.Plugin;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -19,14 +21,21 @@ namespace GenshinModelViewer.Views
         }
         public static readonly DependencyProperty ModelPathProperty = DependencyProperty.Register("ModelPath", typeof(string), typeof(HelixViewer), new PropertyMetadata(string.Empty, OnPathChanged));
 
-        protected Model3DGroup models = new();
         public Model3DGroup Models
         {
-            get => models;
-            set => Set(ref models, value);
+            get => (Model3DGroup)GetValue(ModelsProperty);
+            set => SetValue(ModelsProperty, value);
         }
+        public static readonly DependencyProperty ModelsProperty = DependencyProperty.Register("Models", typeof(Model3DGroup), typeof(HelixViewer), new PropertyMetadata(null));
 
-        public Func<string[], string> Selector = null;
+        //protected Model3DGroup models = new();
+        //public Model3DGroup Models
+        //{
+        //    get => models;
+        //    set => Set(ref models, value);
+        //}
+
+        public Func<string[], Task<string>> Selector = null;
 
         private readonly PMXProvider loader = new();
         private PMXFormat format;
@@ -45,7 +54,7 @@ namespace GenshinModelViewer.Views
             }
         }
 
-        public void LoadModel(string path, Func<string[], string> selector = null)
+        public async void LoadModel(string path, Func<string[], Task<string>> selector = null)
         {
             if (!File.Exists(path))
             {
@@ -56,7 +65,8 @@ namespace GenshinModelViewer.Views
             {
                 loader.Load(path);
 
-                format = loader.GetPMXFormat(path, selector) ?? throw new Exception("Unsupported format");
+                format = (await loader.GetPMXFormat(path, selector)) ?? throw new FormatException("Unsupported format");
+
                 MeshCreationInfo creation_info = CreateMeshCreationInfoSingle();
 
                 int mats = format.material_list.material.Length;
@@ -78,7 +88,7 @@ namespace GenshinModelViewer.Views
 
                         indices.ToList().ForEach(x => mesh.TriangleIndices.Add(x));
 
-                        var textureIndex = format.material_list.material[i].usually_texture_index;
+                        uint textureIndex = format.material_list.material[i].usually_texture_index;
 
                         Material material;
 
@@ -112,12 +122,21 @@ namespace GenshinModelViewer.Views
                         Logger.Warn(e.ToString());
                     }
                 }
+                Models?.Children.Clear();
                 Models = models;
             }
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
+                await new MessageDialog("Failed", e.ToString()).ShowAsync();
             }
+        }
+
+        public void CancelLoadModel()
+        {
+            ModelPath = string.Empty;
+            Models = null;
+            loader?.Dispose();
         }
 
         private MeshCreationInfo CreateMeshCreationInfoSingle()

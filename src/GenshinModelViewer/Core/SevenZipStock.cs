@@ -35,6 +35,7 @@ namespace GenshinModelViewer.Core
                     MessageBox.Show(e.ToString());
                 }
             }
+            ContentDict.Clear();
         }
     }
 }

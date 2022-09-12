@@ -3,12 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:local="clr-namespace:GenshinModelViewer.Views"
+        InputMethod.PreferredImeState="Off"
         mc:Ignorable="d" FontSize="22"
         Title="Genshin Model Viewer" AllowDrop="True"
         Height="900" Width="1440" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+    </Window.Resources>
     <Grid x:Name="gridRoot">
         <local:HelixViewer x:Name="viewer" Visibility="Collapsed"/>
+        <Button Background="Transparent" FontFamily="{StaticResource SegoeFluentIcons}" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button.Content>
+                <TextBlock Text="&#xe700;" FontSize="16" Foreground="White">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#AAA" BlurRadius="2.5" ShadowDepth="0" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
         <Grid x:Name="gridOpen">
             <Border x:Name="borderOpen" Width="600" Height="300" BorderThickness="1.5" CornerRadius="20" BorderBrush="#AbAA" Background="#FAFAFA">
                 <StackPanel x:Name="stackPanelOpen" VerticalAlignment="Center" HorizontalAlignment="Center">

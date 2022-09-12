@@ -2,12 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mscorlib="clr-namespace:System;assembly=mscorlib"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:local="clr-namespace:GenshinModelViewer"
+             xmlns:model="clr-namespace:GenshinModelViewer.Models"
              xmlns:logger="clr-namespace:GenshinModelViewer.Logging;assembly=GenshinModelViewer.Logging"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources/>
+                <ui:XamlControlsResources/>
                 <ResourceDictionary Source="pack://application:,,,/GenshinModelViewer;component/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -20,6 +24,25 @@
                       Arguments="{x:Static logger:Logger.ApplicationLogPath}"
                       WorkingDirectory="{x:Static mscorlib:Environment.CurrentDirectory}" 
                       IconResourcePath="explorer.exe"
+                      IconResourceIndex="0" />
+            <JumpTask ApplicationPath="explorer.exe"
+                      Description=""
+                      Title="Open models directory"
+                      Arguments="{x:Static model:ForDispatcher.ApplicationModelPath}"
+                      WorkingDirectory="{x:Static mscorlib:Environment.CurrentDirectory}" 
+                      IconResourcePath="explorer.exe"
+                      IconResourceIndex="0" />
+            <JumpTask ApplicationPath="https://www.aplaybox.com/u/680828836"
+                      Description=""
+                      CustomCategory="Links" 
+                      Title="Get models from Aplaybox"
+                      IconResourcePath="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+                      IconResourceIndex="0" />
+            <JumpTask ApplicationPath="https://github.com/emako/genshin-model-dispatcher"
+                      Description=""
+                      CustomCategory="Links"
+                      Title="Get models from GitHub"
+                      IconResourcePath="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
                       IconResourceIndex="0" />
         </JumpList>
     </JumpList.JumpList>
