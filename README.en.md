@@ -12,7 +12,7 @@ It also supports the preview of DMM models in other PMX formats.
 
 Tips: The archive type will automatically import the first PMX file in non decompression mode.
 
-  > Support texture formats：`*.png` `*.bmp` `*.dds` `*.tga` etc..
+  > Support model file ref texture formats：`*.png` `*.bmp` `*.dds` `*.tga` etc..
 
 [Model Download](https://www.aplaybox.com/u/680828836)
 
